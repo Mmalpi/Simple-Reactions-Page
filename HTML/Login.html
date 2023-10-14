@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/CSS/Login.css">
+    <script src="/JS/Login.js"></script>
+    <title>LOGIN</title>
+</head>
+<body>
+    <div class="login">
+        <div id="login-inner-login">
+            <h2>Acceder</h2>
+            <form>
+            <label for="nameLogin">Nombre:</label>
+            <input type="text" id="nameLogin" name="nameLogin" required>
+            <label for="passwordLogin">Contraseña:</label>
+            <input type="password" id="passwordLogin" name="passwordLogin" required>
+            <button onclick="loginUser()">Acceder</button>
+            </form>
+        </div>
+        <button onclick="openSingin()">¿No tienes cuenta?</button>
+        <div id="login-inner-singin">
+            <h2>Registrarse</h2>
+            <form>
+            <label for="nameSingin">Nombre:</label>
+            <input type="text" id="nameSingin" name="nameSingin" required>
+            <label for="passwordSingin">Contraseña:</label>
+            <input type="password" id="passwordSingin" name="passwordSingin" required>
+            <button onclick="registerUser()">Registrar</button>
+            </form>
+        </div>
+    </div>
+
+    
+</body>
+</html>
