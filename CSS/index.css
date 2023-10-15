@@ -1,0 +1,25 @@
+body{
+    margin: 0;
+    padding: 0;
+}
+
+
+
+/*BEGIN PROFILE ASIDE*/
+
+.profile-aside{
+    border: solid 2px red; /*TEMPO*/
+}
+button {
+    background-color: #007BFF;
+    color: #fff;
+    border: none;
+    padding: 10px 30px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+li{
+    list-style: none;
+}
+/*END PROFILE ASIDE*/

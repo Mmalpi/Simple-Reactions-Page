@@ -61,8 +61,7 @@ function loginUser() {
 
             // here goes the logic to change the pageeeeee TODO
             sessionStorage.setItem("username", nombre);
-            alert("Inicio de sesión exitoso. ¡Bienvenido!");
-            findUser();
+            window.location.href = "index.html";
 
         } else {
             alert("La contraseña es incorrecta. Inténtelo de nuevo.");
@@ -92,7 +91,7 @@ function registerUser() {
     if (userExists) {
         alert("El usuario ya existe. Por favor, elija otro nombre de usuario.");
     } else {
-        loginUsersData.push({ nombre: nombre, password: password, edad:"", pais:"" });
+        loginUsersData.push({ nombre: nombre, password: password, edad:"", pais:"", genero:"" });
         localStorage.setItem("userData", JSON.stringify(loginUsersData));
 
 
@@ -102,37 +101,6 @@ function registerUser() {
         document.getElementById("nameSingin").value = "";
         document.getElementById("passwordSingin").value = "";
         alert("Usuario registrado exitosamente.");
-        findUser();
-    }
-}
-
-//temp
-function findUser() {
-    // Obtén el nombre del usuario almacenado en sessionStorage
-    var username = sessionStorage.getItem("username");
-
-    if (username) {
-        // Busca al usuario por nombre en los datos almacenados en localStorage
-        var storedData = localStorage.getItem("userData");
-        if (storedData) {
-            var loginUsersData = JSON.parse(storedData);
-            var user = loginUsersData.find(function (user) {
-                return user.nombre === username;
-            });
-
-            if (user) {
-                console.log("Datos del usuario:");
-                console.log("Nombre: " + user.nombre);
-                console.log("Nombre: " + user.password);
-                console.log("Edad: " + user.edad);
-                console.log("País: " + user.pais);
-            } else {
-                console.log("Usuario no encontrado en localStorage.");
-            }
-        } else {
-            console.log("No hay datos de usuario en localStorage.");
-        }
-    } else {
-        console.log("Ningún usuario ha iniciado sesión.");
+        window.location.href = "index.html";
     }
 }
