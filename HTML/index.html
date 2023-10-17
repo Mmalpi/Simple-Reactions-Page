@@ -13,7 +13,7 @@
         <img src="imagen2" alt="imagen2">
     </header>
     
-    <aside class="profile-aside">
+    <div class="content-container">
         <aside class="profile-aside">
             <section class="profile-section">
                 <h2>Información Personal:</h2>
@@ -37,14 +37,15 @@
                 </ul>
             </section>
 
-        <button id="openModal" onclick="openModal()">Actualizar datos</button>
+            <button id="openModal" onclick="openModal()">Actualizar datos</button>
+        </aside>
 
-    </aside>
+        <div id="publicaciones-container"></div>
+    </div>  
 
-    <section class="content">
-
-    </section>
-
+    
+    
+    <script src="/JS/publicaciones.js"></script>
 
     <!--Modal section-->
     <div class="update-data-box-container" id="update-data-box-container"></div>
