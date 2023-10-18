@@ -54,6 +54,7 @@ function findUser() {
         }
     } else {
         console.log("Ningún usuario ha iniciado sesión.");
+        noLogin();
     }
     return user;
 }
@@ -110,5 +111,17 @@ function closeModal(){
     document.querySelector('.bg-update-data-box').style.display = 'none';
 }
 
+//No login funcioon
+function noLogin(){
+    document.querySelector('.noLogin').style.display ="flex";
+    logOut();
 
+}
 
+//Log out
+function logOut(){
+    sessionStorage.removeItem("username");
+    setTimeout(function () {
+        window.location.href = "Login.html";
+      }, 1500);
+}
