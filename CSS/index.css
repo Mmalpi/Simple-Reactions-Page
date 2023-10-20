@@ -78,9 +78,7 @@ button {
     flex-direction: column;
    align-items: center;
 }
-#publicaciones-container article div button{
-    
-}
+
 /*END publicaciones-container*/
 
 /*BEGIN noLogin*/
@@ -97,3 +95,70 @@ button {
     align-items: center;
 }
 /*END noLogin*/
+
+/*BEGIN RESPONSIVE*/
+
+@media screen and (max-width: 1000px){
+    body{
+        max-width: 800px;
+        margin-top: 75px;
+    }
+    .content-container{
+        display: flex;
+        flex-direction: column-reverse;
+    }
+    .profile-aside{
+        position: fixed;
+        bottom: -200px;
+        left: 0;
+        right: 0;
+        max-width: 100%;
+        width: 100%;
+        margin: 0;
+        padding: 0;
+        align-items: center;
+        transition: bottom 0.3s ease;
+    }
+
+    .profile-aside::before {
+        content: "▲"; 
+        display: block;
+        position: absolute;
+        top: 10px;
+        left: 50%;
+        transform: translateX(-50%);
+        font-size: 18px;
+        color: #99bed4; 
+        transition: color 0.3s ease; 
+    }
+    .profile-aside:hover {
+        bottom: 0;
+    }
+    .profile-section{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-top: 20px;
+    }
+    .profile-aside button{
+        width: 250px;
+    }
+    #publicaciones-container{
+        width: 100%;
+        margin: 0;
+        padding: 0;
+    }
+    #publicaciones-container article{
+        width: 40%;
+    }
+}
+
+@media screen and (max-width:500px){
+    body{
+        margin-top: 50px;
+    }
+    #publicaciones-container article{
+        width: 80%;
+    }
+
+}

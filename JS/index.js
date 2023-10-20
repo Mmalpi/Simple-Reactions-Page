@@ -120,6 +120,7 @@ function noLogin(){
 
 //Log out
 function logOut(){
+    
     sessionStorage.removeItem("username");
     setTimeout(function () {
         window.location.href = "Login.html";
