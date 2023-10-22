@@ -20,21 +20,21 @@ function openSingin() {
 
 //Simulation of registry and login
 
-var loginUsersData = []; 
+// var loginUsersData = []; 
 
-// Loading data from local storage in browser
-function loadUsersData() {
-    var storedData = localStorage.getItem("userData");
+// // Loading data from local storage in browser
+// function loadUsersData() {
+//     var storedData = localStorage.getItem("userData");
 
-    if (storedData) {
-        loginUsersData = JSON.parse(storedData);
-    } else {
-        // inicialize if theres none
-        loginUsersData = [];
-    }
-}
+//     if (storedData) {
+//         loginUsersData = JSON.parse(storedData);
+//     } else {
+//         // inicialize if theres none
+//         loginUsersData = [];
+//     }
+// }
 
-loadUsersData();
+// loadUsersData();
 
 //Login function that verify the correct data
 function loginUser() {
@@ -51,7 +51,7 @@ function loginUser() {
         success: function(response) {
             if (response.success) {
                 // Usuario y contraseña válidos
-                sessionStorage.setItem("username", nombre);
+                sessionStorage.setItem("username", name);
                 window.location.href = "index.html";
                 alert("Acceso concedido. Usuario: " + response.user.name);
 
@@ -111,7 +111,7 @@ function registerUser() {
                 // Usuario registrado con éxito
                 console.log(response);
                 alert(response.message);
-                sessionStorage.setItem("username", nombre);
+                sessionStorage.setItem("username", name);
                 window.location.href = "index.html";
             } else {
                 // Error al registrar el usuario

@@ -2,63 +2,105 @@
 function findUser() {
     // session storage username
     var username = sessionStorage.getItem("username");
-
     if (username) {
-        // Busca al usuario por nombre en los datos almacenados en localStorage
-        var storedData = localStorage.getItem("userData");
-        if (storedData) {
-            var loginUsersData = JSON.parse(storedData);
-            var user = loginUsersData.find(function (user) {
-                return user.nombre === username;
-            });
+        // Envía una solicitud al servidor para obtener los datos del usuario
+        $.ajax({
+            type: 'GET',  // Puedes usar GET o POST según tus preferencias y necesidades
+            url: 'getuserdata.php',
+            data: { username: username },  // Envía el nombre de usuario al servidor
+            success: function(response) {
+                if (response && response.nombre) {
+                    console.log("Datos del usuario:");
+                    console.log("Nombre: " + response.nombre);
+                    document.getElementById("profile-name").textContent = response.nombre;
 
-            if (user) {
-                console.log("Datos del usuario:");
+                    if (response.edad) {
+                        console.log("Edad: " + response.edad);
+                        document.getElementById("profile-age").textContent = response.edad;
+                    } else {
+                        console.log("Edad: AUN NO HAY EDAD REGISTRADA");
+                        document.getElementById("profile-age").textContent = "";
+                    }
 
+                    if (response.genero) {
+                        console.log("Genero: " + response.genero);
+                        document.getElementById("profile-gender").textContent = response.genero;
+                    } else {
+                        console.log("Genero: AUN NO HAY GENERO REGISTRADO");
+                        document.getElementById("profile-gender").textContent = "";
+                    }
 
-                console.log("Nombre: " + user.nombre);
-                document.getElementById("profile-name").textContent = user.nombre;
-
-                if(user.edad){
-                    console.log("Edad: " + user.edad);
-                    document.getElementById("profile-age").textContent = user.edad;
-                }else{
-                    console.log("Edad: AUN NO HAY EDAD REGISTRADA");
-                    document.getElementById("profile-age").textContent = "";
+                    if (response.pais) {
+                        console.log("País: " + response.pais);
+                        document.getElementById("profile-country").textContent = response.pais;
+                    } else {
+                        console.log("País: AUN NO HAY PAIS REGISTRADO");
+                        document.getElementById("profile-country").textContent = "";
+                    }
+                } else {
+                    console.log("Ningún usuario ha iniciado sesión o no se encontró el usuario.");
+                    noLogin();
                 }
-
-                if(user.genero){
-                    console.log("Genero: " + user.genero);
-                    document.getElementById("profile-gender").textContent = user.genero;
-                }
-                else{
-                    console.log("País: AUN NO HAY GENERO REGISTRADO");
-                    document.getElementById("profile-gender").textContent = "";
-                }
-
-                if(user.pais){
-                    console.log("País: " + user.pais);
-                    document.getElementById("profile-country").textContent = user.pais;
-                }
-                else{
-                    console.log("País: AUN NO HAY PAIS REGISTRADO");
-                    document.getElementById("profile-country").textContent = "";
-                }
-
-                console.log("contraseña: " + user.password);//temp
-            } else {
-                console.log("Usuario no encontrado en localStorage.");
             }
-        } else {
-            console.log("No hay datos de usuario en localStorage.");
-        }
+        });
     } else {
         console.log("Ningún usuario ha iniciado sesión.");
         noLogin();
     }
-    return user;
+    // if (username) {
+    //     // Busca al usuario por nombre en los datos almacenados en localStorage
+    //     var storedData = localStorage.getItem("userData");
+    //     if (storedData) {
+    //         var loginUsersData = JSON.parse(storedData);
+    //         var user = loginUsersData.find(function (user) {
+    //             return user.nombre === username;
+    //         });
+
+    //         if (user) {
+    //             console.log("Datos del usuario:");
+
+
+    //             console.log("Nombre: " + user.nombre);
+    //             document.getElementById("profile-name").textContent = user.nombre;
+
+    //             if(user.edad){
+    //                 console.log("Edad: " + user.edad);
+    //                 document.getElementById("profile-age").textContent = user.edad;
+    //             }else{
+    //                 console.log("Edad: AUN NO HAY EDAD REGISTRADA");
+    //                 document.getElementById("profile-age").textContent = "";
+    //             }
+
+    //             if(user.genero){
+    //                 console.log("Genero: " + user.genero);
+    //                 document.getElementById("profile-gender").textContent = user.genero;
+    //             }
+    //             else{
+    //                 console.log("País: AUN NO HAY GENERO REGISTRADO");
+    //                 document.getElementById("profile-gender").textContent = "";
+    //             }
+
+    //             if(user.pais){
+    //                 console.log("País: " + user.pais);
+    //                 document.getElementById("profile-country").textContent = user.pais;
+    //             }
+    //             else{
+    //                 console.log("País: AUN NO HAY PAIS REGISTRADO");
+    //                 document.getElementById("profile-country").textContent = "";
+    //             }
+    //         } else {
+    //             console.log("Usuario no encontrado en localStorage.");
+    //         }
+    //     } else {
+    //         console.log("No hay datos de usuario en localStorage.");
+    //     }
+    // } else {
+    //     console.log("Ningún usuario ha iniciado sesión.");
+    //     noLogin();
+    // }
+    // return user;
 }
-var user = findUser();
+findUser();
 
 function updateUserData(){
     event.preventDefault();
@@ -81,6 +123,7 @@ function updateUserData(){
             if (response.success) {
                 // Datos actualizados con éxito
                 alert(response.message);
+                location.reload();
             } else {
                 // Error al actualizar los datos
                 alert(response.message);
