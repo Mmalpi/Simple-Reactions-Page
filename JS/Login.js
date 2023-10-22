@@ -111,6 +111,7 @@ function registerUser() {
                 // Usuario registrado con éxito
                 console.log(response);
                 alert(response.message);
+                sessionStorage.setItem("username", nombre);
                 window.location.href = "index.html";
             } else {
                 // Error al registrar el usuario

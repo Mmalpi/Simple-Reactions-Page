@@ -63,31 +63,55 @@ var user = findUser();
 function updateUserData(){
     event.preventDefault();
     console.log("actualizando usuario")
-    var age = document.getElementById("ageUpdate").value;
-    var gender = document.getElementById("genderUpdate").value;
-    var country = document.getElementById("countryUpdate").value;
+    var age = $('#ageUpdate').val();
+    var gender = $('#genderUpdate').val();
+    var country = $('#countryUpdate').val();
 
-    user.edad = age;
-    user.genero = gender;
-    user.pais = country;
-
-    var storedData = JSON.parse(localStorage.getItem("userData"));
-    if (storedData) {
-        // Encuentra el índice del usuario actual en el arreglo
-        var index = storedData.findIndex(function (u) {
-            return u.nombre === user.nombre;
-        });
-
-        // Actualiza los datos en el arreglo
-        if (index !== -1) {
-            storedData[index] = user;
+    var user_id = sessionStorage.getItem("username");
+    $.ajax({
+        type: 'POST',
+        url: 'updatedata.php',
+        data: {
+            age: age,
+            gender: gender,
+            country: country,
+            user_id: user_id
+        },
+        success: function(response) {
+            if (response.success) {
+                // Datos actualizados con éxito
+                alert(response.message);
+            } else {
+                // Error al actualizar los datos
+                alert(response.message);
+            }
         }
+    });
+    // var age = document.getElementById("ageUpdate").value;
+    // var gender = document.getElementById("genderUpdate").value;
+    // var country = document.getElementById("countryUpdate").value;
 
-        // Guarda el arreglo actualizado en localStorage
-        localStorage.setItem("userData", JSON.stringify(storedData));
-    }
+    // user.edad = age;
+    // user.genero = gender;
+    // user.pais = country;
 
-    location.reload();
+    // var storedData = JSON.parse(localStorage.getItem("userData"));
+    // if (storedData) {
+    //     // Encuentra el índice del usuario actual en el arreglo
+    //     var index = storedData.findIndex(function (u) {
+    //         return u.nombre === user.nombre;
+    //     });
+
+    //     // Actualiza los datos en el arreglo
+    //     if (index !== -1) {
+    //         storedData[index] = user;
+    //     }
+
+    //     // Guarda el arreglo actualizado en localStorage
+    //     localStorage.setItem("userData", JSON.stringify(storedData));
+    // }
+
+    // location.reload();
     
 }
 
