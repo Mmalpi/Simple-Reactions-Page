@@ -15,7 +15,7 @@ $username = $_POST["username"];
 
 if ($username) {
     // Realiza una consulta para obtener los datos del usuario por nombre de usuario
-    $sql = "SELECT * FROM users WHERE nombre = '$username'";
+    $sql = "SELECT * FROM users WHERE name = '$username'";
     $result = $conn->query($sql);
 
     if ($result->num_rows > 0) {

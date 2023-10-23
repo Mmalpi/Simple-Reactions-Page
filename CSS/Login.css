@@ -1,5 +1,5 @@
 html{
-    background-image: url('/IMG/background.svg');
+    background-image: url('../IMG/background.svg');
     background-size: cover;
     background-repeat: no-repeat;
 }

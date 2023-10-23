@@ -46,7 +46,7 @@ function loginUser() {
 
     $.ajax({
         type: 'POST',
-        url: 'login.php',
+        url: '../PHP/login.php',
         data: { name: name, password: password },
         success: function(response) {
             if (response.success) {
@@ -104,7 +104,7 @@ function registerUser() {
 
     $.ajax({
         type: 'POST',
-        url: 'registeruser.php',
+        url: '../PHP/registeruser.php',
         data: { name: name, password: password },
         success: function(response) {
             if (response.success) {

@@ -5,34 +5,34 @@ function findUser() {
     if (username) {
         // Envía una solicitud al servidor para obtener los datos del usuario
         $.ajax({
-            type: 'GET',  // Puedes usar GET o POST según tus preferencias y necesidades
-            url: 'getuserdata.php',
+            type: 'POST',  // Puedes usar GET o POST según tus preferencias y necesidades
+            url: '../PHP/getuserdata.php',
             data: { username: username },  // Envía el nombre de usuario al servidor
             success: function(response) {
-                if (response && response.nombre) {
+                if (response && response.name) {
                     console.log("Datos del usuario:");
-                    console.log("Nombre: " + response.nombre);
-                    document.getElementById("profile-name").textContent = response.nombre;
+                    console.log("Nombre: " + response.name);
+                    document.getElementById("profile-name").textContent = response.name;
 
-                    if (response.edad) {
-                        console.log("Edad: " + response.edad);
-                        document.getElementById("profile-age").textContent = response.edad;
+                    if (response.age) {
+                        console.log("Edad: " + response.age);
+                        document.getElementById("profile-age").textContent = response.age;
                     } else {
                         console.log("Edad: AUN NO HAY EDAD REGISTRADA");
                         document.getElementById("profile-age").textContent = "";
                     }
 
-                    if (response.genero) {
-                        console.log("Genero: " + response.genero);
-                        document.getElementById("profile-gender").textContent = response.genero;
+                    if (response.gender) {
+                        console.log("Genero: " + response.gender);
+                        document.getElementById("profile-gender").textContent = response.gender;
                     } else {
                         console.log("Genero: AUN NO HAY GENERO REGISTRADO");
                         document.getElementById("profile-gender").textContent = "";
                     }
 
-                    if (response.pais) {
-                        console.log("País: " + response.pais);
-                        document.getElementById("profile-country").textContent = response.pais;
+                    if (response.country) {
+                        console.log("País: " + response.country);
+                        document.getElementById("profile-country").textContent = response.country;
                     } else {
                         console.log("País: AUN NO HAY PAIS REGISTRADO");
                         document.getElementById("profile-country").textContent = "";
@@ -112,7 +112,7 @@ function updateUserData(){
     var user_id = sessionStorage.getItem("username");
     $.ajax({
         type: 'POST',
-        url: 'updatedata.php',
+        url: '../PHP/updatedata.php',
         data: {
             age: age,
             gender: gender,
